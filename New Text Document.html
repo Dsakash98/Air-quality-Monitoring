@@ -1,0 +1,32 @@
+
+<html>
+<head>
+<title>Temperatur</title>
+<script type="text/javascript">
+function nachladen() {
+var http = null;
+if (window.XMLHttpRequest) {
+http = new XMLHttpRequest();
+} else if (window.ActiveXObject) {
+http = new ActiveXObject("Microsoft.XMLHTTP");
+}
+if (http != null) {
+http.open("GET", "http://thingspeak.com/channels/myChannelID/field/1/last.html", true);
+http.onreadystatechange = ausgeben;
+http.send(null);
+}
+function ausgeben() {
+if (http.readyState == 4) {
+document.getElementById("Ausgabe").innerHTML =
+http.responseText;
+}
+}
+}
+window.onload=nachladen;
+//--></script>
+</head>
+<body>
+Temperatur:
+<div id="Ausgabe"></div>
+</body>
+</html>
