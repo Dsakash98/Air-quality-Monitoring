@@ -1,0 +1,51 @@
+<html>
+<head>
+ 
+<title>Air Quality Monitoring </title>
+<script type="text/javascript">
+function nachladen() {
+var http = null;
+if (window.XMLHttpRequest) {
+http = new XMLHttpRequest();
+} else if (window.ActiveXObject) {
+http = new ActiveXObject("Microsoft.XMLHTTP");
+}
+if (http != null) {
+http.open("GET", "http://thingspeak.com/channels/myChannelID/field/1/last.html", true);
+http.onreadystatechange = ausgeben;
+http.send(null);
+}
+function ausgeben() {
+if (http.readyState == 4) {
+document.getElementById("Ausgabe").innerHTML =
+http.responseText;
+}
+}
+}
+window.onload=nachladen;
+//--></script>
+</head>
+<body>
+  
+<iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1468052/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=50&type=line&update=15">
+<table border=2 bordercolor="#0000FF">
+<tr><td colspan="2">
+<h1 align="center" color="#00FFFF">Data Collection Dashboard</h1>
+</td></tr>
+<tr><td>
+<iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/320695/charts/1?bgcolor=%23ffffff&color=%23F62020&dynamic=true&results=800&type=line&update=15"></iframe>
+</td>
+<td><iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/apps/matlab_visualizations/166526?color=%23FFFFFF&dynamic=true"></iframe>
+</td></tr>
+<tr><td>
+<iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/12397/charts/2?results=720&dynamic=true&update=15"></iframe>
+</td>
+<td>
+<iframe width="300" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/apps/matlab_visualizations/308777"></iframe>
+<h3>Author</h3>
+Air Quality Monitoring Team
+ https://docs.google.com/presentation/d/1Hc_hOXD3d86SyxZ8Lzwc9Y4eOaH0L5EE/edit#slide=id.gdcab077327_6_4
+</td>
+<div id="Ausgabe"></div>
+</body>
+</html>
